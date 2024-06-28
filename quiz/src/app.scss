@@ -1,10 +1,13 @@
-$background:  #40A2D8;
+$background:  #191919;
 $color: #F72798;
+$white: #fff;
+
+@import url("//cdn.web-fonts.ge/fonts/alk-life/css/alk-life.min.css");
 
 body {
     background-color: $background;
     background-image: url("https://www.transparenttextures.com/patterns/circles.png");
-    
+    font-family: "ALK Life", sans-serif;
     
 
 }
@@ -17,9 +20,63 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    -webkit-box-shadow:0px 0px 77px 15px rgba(255,46,217,0.9);
-    -moz-box-shadow: 0px 0px 77px 15px rgba(255,46,217,0.9);
-    box-shadow: 0px 0px 77px 15px rgba(255,46,217,0.9);
-    
+    box-shadow:
+    0 0 5px #fff,
+    0 0 20px #fff,
+    0 0 40px #0ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  
+
+    button {
+        width: 400px;
+        background-color: #0ff;
+        cursor: pointer;
+        padding: 10px 20px;
+        color: $background;
+        font-weight: bold;
+        font-size: 20px;
+        outline: none;
+        font-family: "ALK Life", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        box-shadow: -5px 5px $white;
+        transition: all 0.9s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+        &:hover {
+            background-color: #F72798;
+            color: $white;
+        }
+
+    }
+}
+
+
+.audio {
+    position: absolute;
+    color: $white;
+    bottom: 15px;
+    right: 30px;
     
 }
+
+
+.title {
+
+    color: $white;
+    text-align: center;
+    font-size: 3rem;
+    
+}
+
+
+
