@@ -9,7 +9,7 @@ body {
     background-color: $background;
     background-image: url("https://www.transparenttextures.com/patterns/circles.png");
     font-family: "ALK Life", sans-serif;
-    
+    overflow: hidden;
 
 }
 
@@ -237,6 +237,25 @@ body {
       position: absolute;
       left: 70%;
      }
+
+     .win {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+     }
+
+      .but {
+        display: flex;
+        flex-direction: column;
+        
+          
+        button {
+          width: 250px;
+          margin: auto;
+        }
+      }
+
+      
 
 
     

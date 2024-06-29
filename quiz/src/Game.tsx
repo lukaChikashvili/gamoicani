@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { questions } from "./data";
 import { shuffleArray } from "./shuffle";
 import Win from "./Win";
+import { motion } from 'framer-motion'
 
 const Game = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -65,13 +66,15 @@ const Game = () => {
   return (
     <div>
       
-      <div className="boxContainer" style={{display: showResult ? "none" : "flex"}}>
+      <motion.div initial = {{opacity: 0, translateY: 6}}
+                   animate = {{opacity: 1, translateY: 0}}
+                   transition = {{type: 'spring', duration: 1, delay: 0.7}} className="boxContainer" style={{display: showResult ? "none" : "flex"}}>
         <div className="box box1"></div>
         <div className="box box2"></div>
         <div className="box box3"></div>
         <div className="box box4"></div>
         <div className="box box5"></div>
-      </div>
+      </motion.div>
 
 
       {showResult ? (
@@ -79,13 +82,17 @@ const Game = () => {
       ) : (
         questions.length > 0 && (
           <>
-            <p className="score">ქულა: {score}</p>
+            <motion.p initial = {{opacity: 0, translateY: 6}}
+                   animate = {{opacity: 1, translateY: 0}}
+                   transition = {{type: 'spring', duration: 1, delay: 0.7}} className="score">ქულა: {score}</motion.p>
             <audio controls autoPlay ref={audioRef}>
               <source src={questions[currentQuestionIndex].voice} type="audio/mp3" />
             </audio>
             <div className="images">
               {questions[currentQuestionIndex].answers.map((value, i) => (
-                <img
+                <motion.img initial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                transition = {{type: 'spring', duration: 1, delay: 0.9}}
                   key={i}
                   src={value.img}
                   onClick={() => checkAnswer(value.correct, i)}
