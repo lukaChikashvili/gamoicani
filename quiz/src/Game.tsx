@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { questions } from "./data";
-
+import { shuffleArray } from "./shuffle";
 import Win from "./Win";
 
 const Game = () => {
@@ -20,6 +20,9 @@ const Game = () => {
   }, [currentQuestionIndex]);
 
 
+  useEffect(() => {
+    shuffleArray(questions)
+  }, []);
 
 
   const checkAnswer = (answer: boolean, index: number) => {
