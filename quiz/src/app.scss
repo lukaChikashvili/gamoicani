@@ -265,3 +265,38 @@ body {
     }
 
  }
+
+
+ .win-text {
+   color: $white;
+ }
+
+ .restart {
+  width: 300px;
+  background-color: #0ff;
+  cursor: pointer;
+  padding: 10px 20px;
+  color: $background;
+  font-weight: bold;
+  font-size: 20px;
+  outline: none;
+  font-family: "ALK Life", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  box-shadow: -5px 5px $white;
+  transition: all 0.9s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+  &:hover {
+      background-color: #F72798;
+      color: $white;
+  }
+
+
+ }
+
+ .but {
+  display: flex;
+  gap: 3rem;
+ }

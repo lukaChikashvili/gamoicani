@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { questions } from "./data";
-import { useNavigate } from "react-router-dom";
+
+import Win from "./Win";
 
 const Game = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const navigate = useNavigate();
   const [score, setScore] = useState(0);
+  const [showResult, setShowResult] = useState(false);
 
   useEffect(() => {
    
@@ -34,21 +35,34 @@ const Game = () => {
       setTimeout(() => {
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
         setCorrectAnswerIndex(null); 
+
+        
        
       }, 3000);
       
+      if(currentQuestionIndex >= questions.length - 1) {
+         setShowResult(true);
+      }
        
       
     }else {
-      navigate("/");
+
+       setShowResult(true)
     }
   };
 
   
+  const restartGame = () => {
+    setCurrentQuestionIndex(0);
+    setCorrectAnswerIndex(null);
+    setScore(0);
+    setShowResult(false);
+  };
 
   return (
     <div>
-      <div className="boxContainer">
+      
+      <div className="boxContainer" style={{display: showResult ? "none" : "flex"}}>
         <div className="box box1"></div>
         <div className="box box2"></div>
         <div className="box box3"></div>
@@ -56,28 +70,32 @@ const Game = () => {
         <div className="box box5"></div>
       </div>
 
-      {questions.length > 0 && (
-        <>
-       
 
-          <p className="score">ქულა: {score}</p>
-          <audio controls autoPlay ref={audioRef}>
-            <source src={questions[currentQuestionIndex].voice} type="audio/mp3" />
-          </audio>
-          <div className="images">
-            {questions[currentQuestionIndex].answers.map((value, i) => (
-              <img
-                key={i}
-                src={value.img}
-                onClick={() => checkAnswer(value.correct, i)}
-                style={{ border: correctAnswerIndex === i ? "2px solid green" : "none", 
-                         pointerEvents: correctAnswerIndex !== null && correctAnswerIndex !== i ? "none" : "auto"  }}
-                alt={`answer ${i}`}
-                
-              />
-            ))}
-          </div>
-        </>
+      {showResult ? (
+        <Win score={score} restartGame = {restartGame} />
+      ) : (
+        questions.length > 0 && (
+          <>
+            <p className="score">ქულა: {score}</p>
+            <audio controls autoPlay ref={audioRef}>
+              <source src={questions[currentQuestionIndex].voice} type="audio/mp3" />
+            </audio>
+            <div className="images">
+              {questions[currentQuestionIndex].answers.map((value, i) => (
+                <img
+                  key={i}
+                  src={value.img}
+                  onClick={() => checkAnswer(value.correct, i)}
+                  style={{
+                    border: correctAnswerIndex === i ? "2px solid green" : "2px solid #0ff",
+                    pointerEvents: correctAnswerIndex !== null && correctAnswerIndex !== i ? "none" : "auto",
+                  }}
+                  alt={`answer ${i}`}
+                />
+              ))}
+            </div>
+          </>
+        )
       )}
     </div>
   );

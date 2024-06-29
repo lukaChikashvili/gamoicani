@@ -4,6 +4,7 @@ import { AudioLines } from "lucide-react"
 import Game from "./Game"
 
 
+
 function App() {
 
 
@@ -14,6 +15,7 @@ function App() {
              <Routes>
               <Route path="/" element = {<StartGame />} />
               <Route path="/game" element = {<Game />} />
+             
              </Routes>
              
           </div>
