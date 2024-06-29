@@ -319,3 +319,20 @@ body {
   display: flex;
   gap: 3rem;
  }
+
+ .settings {
+   display: flex;
+   flex-direction: column;
+   
+   align-items: center;
+   justify-content: center;
+
+  .rules {
+    font-size: 2rem;
+    color: $white;
+    width: 70%;
+    text-align: center;
+    color: #0ff;
+   }
+ }
+

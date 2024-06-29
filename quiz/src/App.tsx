@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import StartGame from "./StartGame"
 import { AudioLines } from "lucide-react"
 import Game from "./Game"
+import Settings from "./Settings"
 
 
 
@@ -15,6 +16,7 @@ function App() {
              <Routes>
               <Route path="/" element = {<StartGame />} />
               <Route path="/game" element = {<Game />} />
+              <Route path="/rules" element = {<Settings />} />
              
              </Routes>
              

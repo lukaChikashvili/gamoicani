@@ -11,6 +11,7 @@ const Game = () => {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
 
+
   useEffect(() => {
    
     if (audioRef.current) {
