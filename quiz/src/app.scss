@@ -175,10 +175,10 @@ body {
         border-radius: 10px;
         box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.4);
         cursor: pointer;
-        transition: all 0.8s cubic-bezier(0.47, 0, 0.745, 0.715);
+        transition: all 0.3s cubic-bezier(0.47, 0, 0.745, 0.715);
 
              &:hover {
-          filter: grayscale(5);
+               opacity: 0.7;
             }
       }
   }
@@ -186,4 +186,34 @@ body {
 
   audio {
     display: none;
+  }
+
+  .next-button {
+    position: absolute;
+    right: 30px;
+    background-color: #0ff;
+     border: none;
+     padding: 7px 15px;
+     cursor: pointer;
+     color: $background;
+     font-weight: bold;
+     font-family: "ALK Life", sans-serif;
+     font-size: 17px;
+     border-radius: 7px;
+     box-shadow: -5px 5px $white;
+     transition: all 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+         &:hover {
+          background-color: #F72798;
+          color: $white;
+         }
+  }
+
+
+  .score {
+    position: absolute;
+    left: 40px;
+    color: $white;
+    font-size: 2rem;
+    top: 0;
   }
