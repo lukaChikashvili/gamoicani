@@ -1,6 +1,7 @@
 $background:  #191919;
 $color: #F72798;
 $white: #fff;
+$mobile: 480px;
 
 @import url("//cdn.web-fonts.ge/fonts/alk-life/css/alk-life.min.css");
 
@@ -13,6 +14,7 @@ body {
 }
 
 .border {
+    
     width: 90%;
     height: 90vh;
     position: absolute;
@@ -217,3 +219,49 @@ body {
     font-size: 2rem;
     top: 0;
   }
+
+
+  @media screen and (max-width: $mobile) {
+     .images {
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+
+         img {
+          width: 200px;
+          height: 100px;
+         }
+     }
+
+     .boxContainer {
+      position: absolute;
+      left: 70%;
+     }
+
+
+    
+  }
+
+  @media screen and (max-width: 768px) {
+    .images {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      
+          img {
+            width: 200px;
+            height: 100px;
+           }
+      
+        
+    }
+
+    .title {
+      font-size: 2rem;
+    }
+    .buttons button {
+      width: 250px;
+      margin: auto;
+    }
+
+ }

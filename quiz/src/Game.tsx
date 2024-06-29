@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const Game = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number | null>(null);
-  const [next, setNext] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const navigate = useNavigate();
   const [score, setScore] = useState(0);
@@ -23,26 +22,29 @@ const Game = () => {
 
 
   const checkAnswer = (answer: boolean, index: number) => {
-    if (answer === true && audioRef.current) {
-      setNext(true);
+    if (answer === true && audioRef.current ) {
+      
       audioRef.current.pause();
       setCorrectAnswerIndex(index);
       setScore((prev) => (prev + 10));
-    } else {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0; 
+      }
+      setTimeout(() => {
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+        setCorrectAnswerIndex(null); 
+       
+      }, 3000);
+      
+       
+      
+    }else {
       navigate("/");
     }
   };
 
-  const goToNextQuestion = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0; 
-    }
-    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-    setCorrectAnswerIndex(null); 
-    setNext(false);
-     
-  };
+  
 
   return (
     <div>
@@ -56,11 +58,7 @@ const Game = () => {
 
       {questions.length > 0 && (
         <>
-          {next && currentQuestionIndex < questions.length - 1 && (
-            <button className="next-button" onClick={goToNextQuestion}>
-              შემდეგი
-            </button>
-          )}
+       
 
           <p className="score">ქულა: {score}</p>
           <audio controls autoPlay ref={audioRef}>
@@ -72,8 +70,10 @@ const Game = () => {
                 key={i}
                 src={value.img}
                 onClick={() => checkAnswer(value.correct, i)}
-                style={{ border: correctAnswerIndex === i ? "2px solid green" : "none" }}
+                style={{ border: correctAnswerIndex === i ? "2px solid green" : "none", 
+                         pointerEvents: correctAnswerIndex !== null && correctAnswerIndex !== i ? "none" : "auto"  }}
                 alt={`answer ${i}`}
+                
               />
             ))}
           </div>
